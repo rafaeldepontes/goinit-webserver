@@ -1,161 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="public/gini-logo.png">
-  <title>Go Init — Gini</title>
-  <meta name="description" content="Go Init (Gini) — CLI tool to scaffold Go projects quickly.">
-  <style>
-    :root{
-      --bg: #0f1724;
-      --card: #0b1220;
-      --muted: #94a3b8;
-      --accent: #7c3aed;
-      --glass: rgba(255,255,255,0.03);
-      --white: #e6eef8;
-      --maxw: 980px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071028 0%, #071227 60%);color:var(--white);-webkit-font-smoothing:antialiased}
-    .container{max-width:var(--maxw);margin:48px auto;padding:24px}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="public/gini-logo.png">
+    <title>Go Init — Gini</title>
+    <meta name="description" content="Go Init (Gini) — CLI tool to scaffold Go projects quickly.">
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --muted: #94a3b8;
+            --accent: #7c3aed;
+            --glass: rgba(255, 255, 255, 0.03);
+            --white: #e6eef8;
+            --maxw: 980px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
 
-    header{display:flex;gap:18px;align-items:center}
-    .logo{width:84px;height:84px;flex:0 0 84px;border-radius:14px;background:var(--glass);display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .logo img{max-width:100%;display:block}
-    h1{font-size:22px;margin:0}
-    .tag{color:var(--muted);font-size:13px}
 
-    .hero{display:grid;grid-template-columns:1fr 280px;gap:28px;margin-top:18px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));padding:20px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+        body {
+            --sb-track-color: linear-gradient(180deg, #071028 0%, #071227 60%);
+            --sb-thumb-color: #e6eef8;
+            --sb-size: 10px;
+        }
 
-    .lead{color:var(--muted);line-height:1.5}
-    ul.features{margin:12px 0 0 18px}
-    ul.features li{margin:8px 0}
+        body::-webkit-scrollbar {
+            width: var(--sb-size)
+        }
 
-    .cta{display:flex;gap:12px;align-items:center;margin-top:16px}
-    .btn{background:linear-gradient(90deg,var(--accent),#5b21b6);border:none;color:white;padding:12px 16px;border-radius:10px;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(92,33,163,0.18)}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white);font-weight:600}
-    .btn:active{transform:translateY(1px)}
+        body::-webkit-scrollbar-track {
+            background: var(--sb-track-color);
+            border-radius: 0%;
+        }
 
-    pre{background:#07122a;padding:14px;border-radius:8px;overflow:auto;color:#dbeafe}
-    code{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;font-size:13px}
+        body::-webkit-scrollbar-thumb {
+            background: var(--sb-thumb-color);
+            border-radius: 5px;
+            border: 0px solid #062438;
+        }
 
-    .right{display:flex;flex-direction:column;gap:12px}
-    .meta{font-size:13px;color:var(--muted)}
+        @supports not selector(::-webkit-scrollbar) {
+            body {
+                scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+            }
+        }
 
-    footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+        * {
+            box-sizing: border-box
+        }
 
-    @media (max-width:880px){
-      .hero{grid-template-columns:1fr;}
-      .right{order:2}
-    }
-  </style>
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(180deg, #071028 0%, #071227 60%);
+            color: var(--white);
+            -webkit-font-smoothing: antialiased
+        }
+
+        .container {
+            max-width: var(--maxw);
+            margin: 48px auto;
+            padding: 24px
+        }
+
+        header {
+            display: flex;
+            gap: 18px;
+            align-items: center
+        }
+
+        .logo {
+            width: 84px;
+            height: 84px;
+            flex: 0 0 84px;
+            border-radius: 14px;
+            background: var(--glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden
+        }
+
+        .logo img {
+            max-width: 100%;
+            display: block
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 0
+        }
+
+        .tag {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 28px;
+            margin-top: 18px
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.015));
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(2, 6, 23, 0.6)
+        }
+
+        .lead {
+            color: var(--muted);
+            line-height: 1.5
+        }
+
+        ul.features {
+            margin: 12px 0 0 18px
+        }
+
+        ul.features li {
+            margin: 8px 0
+        }
+
+        .cta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-top: 16px
+        }
+
+        .btn {
+            background: linear-gradient(90deg, var(--accent), #5b21b6);
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(92, 33, 163, 0.18)
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--white);
+            font-weight: 600
+        }
+
+        .btn:active {
+            transform: translateY(1px)
+        }
+
+        pre {
+            background: #07122a;
+            padding: 14px;
+            border-radius: 8px;
+            overflow: auto;
+            color: #dbeafe
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+            font-size: 13px
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .meta {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        footer {
+            margin-top: 28px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center
+        }
+
+        @media (max-width:880px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .right {
+                order: 2
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <header>
-      <div class="logo card" aria-hidden>
-        <!-- Place your image at public/Gini.png -->
-        <img src="public/gini-logo.png" alt="Gini logo" />
-      </div>
-      <div>
-        <h1>Gini — Go Init</h1>
-        <div class="tag">Open-source CLI for fast Go project scaffolding</div>
-      </div>
-    </header>
+    <div class="container">
+        <header>
+            <div class="logo card" aria-hidden>
+                <!-- Place your image at public/Gini.png -->
+                <img src="public/gini-logo.png" alt="Gini logo" />
+            </div>
+            <div>
+                <h1>Gini — Go Init</h1>
+                <div class="tag">Open-source CLI for fast Go project scaffolding</div>
+            </div>
+        </header>
 
-    <main class="hero">
-      <section class="card">
-        <p class="lead">
-          <strong>Go Init</strong> is an open-source CLI tool that accelerates Go project setup by generating a structured project layout with essential tooling and sensible defaults.
-          It removes repetitive boilerplate so you can focus on writing actual business logic.
-        </p>
+        <main class="hero">
+            <section class="card">
+                <p class="lead">
+                    <strong>Go Init</strong> is an open-source CLI tool that accelerates Go project setup by generating
+                    a structured project layout with essential tooling and sensible defaults.
+                    It removes repetitive boilerplate so you can focus on writing actual business logic.
+                </p>
 
-        <img src="public/Gini.png" alt="Gini screenshot" />
+                <img src="public/Gini.png" alt="Gini screenshot" />
 
-        <h3 style="margin-top:16px">Features</h3>
-        <ul class="features">
-          <li>Ready-to-use configuration and defaults</li>
-          <li>Fast project scaffolding</li>
-          <li>Minimal setup, zero friction</li>
-          <li>Designed for small project / MVP Go applications</li>
-          <li>Nix support</li>
-        </ul>
+                <h3 style="margin-top:16px">Features</h3>
+                <ul class="features">
+                    <li>Ready-to-use configuration and defaults</li>
+                    <li>Fast project scaffolding</li>
+                    <li>Minimal setup, zero friction</li>
+                    <li>Designed for small project / MVP Go applications</li>
+                    <li>Nix support</li>
+                </ul>
 
-        <h3 style="margin-top:16px">How to use</h3>
-        <pre><code>$ gini build</code></pre>
-        <p class="meta">This will create a new directory with the predefined structure and configuration.</p>
+                <h3 style="margin-top:16px">How to use</h3>
+                <pre><code>$ gini build</code></pre>
+                <p class="meta">This will create a new directory with the predefined structure and configuration.</p>
 
-        <h3 style="margin-top:14px">Installation</h3>
-        <p class="meta">Go Install</p>
-        <pre><code>go install github.com/rafaeldepontes/goinit/cmd/gini@latest</code></pre>
-        <p class="meta">This installs a go binary that will automatically bind to your $GOPATH. Make sure <code>$GOPATH/bin</code> is in your <code>$PATH</code>.</p>
+                <h3 style="margin-top:14px">Installation</h3>
+                <p class="meta">Go Install</p>
+                <pre><code>go install github.com/rafaeldepontes/goinit/cmd/gini@latest</code></pre>
+                <p class="meta">This installs a go binary that will automatically bind to your $GOPATH. Make sure
+                    <code>$GOPATH/bin</code> is in your <code>$PATH</code>.
+                </p>
 
-        <h3 style="margin-top:14px">Requirements</h3>
-        <ul class="features">
-          <li>Go 1.25.5 or newer</li>
-        </ul>
+                <h3 style="margin-top:14px">Requirements</h3>
+                <ul class="features">
+                    <li>Go 1.25.5 or newer</li>
+                </ul>
 
-        <h3 style="margin-top:14px">Why Go Init?</h3>
-        <p class="lead">Setting up Go projects repeatedly is tedious and setting up the dockerfile and docker-compose is kinda lame... Go Init provides a consistent starting point, helping you:</p>
-        <ul class="features">
-          <li>Reduce setup time</li>
-          <li>Maintain project structure consistency</li>
-          <li>Create your Dockerfile and docker-compose with everything you need.</li>
-        </ul>
+                <h3 style="margin-top:14px">Why Go Init?</h3>
+                <p class="lead">Setting up Go projects repeatedly is tedious and setting up the dockerfile and
+                    docker-compose is kinda lame... Go Init provides a consistent starting point, helping you:</p>
+                <ul class="features">
+                    <li>Reduce setup time</li>
+                    <li>Maintain project structure consistency</li>
+                    <li>Create your Dockerfile and docker-compose with everything you need.</li>
+                </ul>
 
-        <h3 style="margin-top:14px">Roadmap</h3>
-        <ul class="features">
-          <li>Custom templates</li>
-          <li>Docker</li>
-          <li>Configurable project layouts</li>
-        </ul>
+                <h3 style="margin-top:14px">Roadmap</h3>
+                <ul class="features">
+                    <li>Custom templates</li>
+                    <li>Docker</li>
+                    <li>Configurable project layouts</li>
+                </ul>
 
-        <h3 style="margin-top:14px">Contributing</h3>
-        <p class="meta">Contributions are welcome. Feel free to open issues or submit pull requests.</p>
+                <h3 style="margin-top:14px">Contributing</h3>
+                <p class="meta">Contributions are welcome. Feel free to open issues or submit pull requests.</p>
 
-        <div class="cta">
-          <button id="githubBtn" class="btn" title="Open GitHub repository">View on GitHub</button>
-          <a id="licenseBtn" class="btn ghost" title="View license">License (MIT)</a>
-        </div>
-      </section>
+                <div class="cta">
+                    <button id="githubBtn" class="btn" title="Open GitHub repository">View on GitHub</button>
+                    <a id="licenseBtn" class="btn ghost" title="View license">License (MIT)</a>
+                </div>
+            </section>
 
-      <aside class="right">
-        <div class="card">
-          <h4 style="margin:0 0 8px 0">Project</h4>
-          <p class="meta">Project link and contact</p>
-          <p style="margin:8px 0"><strong>GitHub:</strong> <a href="https://github.com/rafaeldepontes/goinit" target="_blank" rel="noopener" style="color:var(--accent)">github.com/rafaeldepontes/goinit</a></p>
+            <aside class="right">
+                <div class="card">
+                    <h4 style="margin:0 0 8px 0">Project</h4>
+                    <p class="meta">Project link and contact</p>
+                    <p style="margin:8px 0"><strong>GitHub:</strong> <a href="https://github.com/rafaeldepontes/goinit"
+                            target="_blank" rel="noopener"
+                            style="color:var(--accent)">github.com/rafaeldepontes/goinit</a></p>
 
-          <h4 style="margin-top:12px">Contact</h4>
-          <p style="margin:8px 0"><a href="mailto:rafael.cr.carneiro@gmail.com" style="color:var(--accent)">rafael.cr.carneiro@gmail.com</a></p>
-        </div>
-      </aside>
-    </main>
+                    <h4 style="margin-top:12px">Contact</h4>
+                    <p style="margin:8px 0"><a href="mailto:rafael.cr.carneiro@gmail.com"
+                            style="color:var(--accent)">rafael.cr.carneiro@gmail.com</a></p>
+                </div>
+            </aside>
+        </main>
 
-    <footer>
-      <small>Go Init — Gini · Built by Rafael · <a href="https://github.com/rafaeldepontes/goinit" target="_blank" rel="noopener" style="color:var(--accent)">Open on GitHub</a></small>
-    </footer>
-  </div>
+        <footer>
+            <small>Go Init — Gini · Built by Rafael · <a href="https://github.com/rafaeldepontes/goinit" target="_blank"
+                    rel="noopener" style="color:var(--accent)">Open on GitHub</a></small>
+        </footer>
+    </div>
 
-  <script>
-    (function(){
-      const url = 'https://github.com/rafaeldepontes/goinit';
-      const btn = document.getElementById('githubBtn');
-      btn.addEventListener('click', function(){
-        window.open(url, '_blank', 'noopener');
-      });
-    })();
+    <script>
+        (function () {
+            const url = 'https://github.com/rafaeldepontes/goinit';
+            const btn = document.getElementById('githubBtn');
+            btn.addEventListener('click', function () {
+                window.open(url, '_blank', 'noopener');
+            });
+        })();
 
-    (function(){
-      const url = 'https://github.com/rafaeldepontes/goinit/blob/main/LICENSE';
-      const btn = document.getElementById('licenseBtn');
-      btn.addEventListener('click', function(){
-        window.open(url, '_blank', 'noopener');
-      });
-    })();
-  </script>
+        (function () {
+            const url = 'https://github.com/rafaeldepontes/goinit/blob/main/LICENSE';
+            const btn = document.getElementById('licenseBtn');
+            btn.addEventListener('click', function () {
+                window.open(url, '_blank', 'noopener');
+            });
+        })();
+    </script>
 </body>
+
 </html>
